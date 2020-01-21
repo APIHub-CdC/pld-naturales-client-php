@@ -205,7 +205,7 @@ class PLDNaturalesApi
                 'Missing the required parameter $request when calling pld'
             );
         }
-        $resourcePath = '/';
+        $resourcePath = '';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

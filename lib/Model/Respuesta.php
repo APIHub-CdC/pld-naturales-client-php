@@ -12,13 +12,13 @@ class Respuesta implements ModelInterface, ArrayAccess
     protected static $PLDNaturalesModelName = 'Respuesta';
     
     protected static $PLDNaturalesTypes = [
-        'folio_consulta_otorgante' => 'string',
+        'folio' => 'string',
         'num_consulta' => 'float',
         'personas' => '\PLDNaturales\Client\Model\Persona[]'
     ];
     
     protected static $PLDNaturalesFormats = [
-        'folio_consulta_otorgante' => null,
+        'folio' => null,
         'num_consulta' => null,
         'personas' => null
     ];
@@ -34,19 +34,19 @@ class Respuesta implements ModelInterface, ArrayAccess
     }
     
     protected static $attributeMap = [
-        'folio_consulta_otorgante' => 'folioConsultaOtorgante',
+        'folio' => 'folio',
         'num_consulta' => 'numConsulta',
         'personas' => 'personas'
     ];
     
     protected static $setters = [
-        'folio_consulta_otorgante' => 'setFolioConsultaOtorgante',
+        'folio' => 'setFolio',
         'num_consulta' => 'setNumConsulta',
         'personas' => 'setPersonas'
     ];
     
     protected static $getters = [
-        'folio_consulta_otorgante' => 'getFolioConsultaOtorgante',
+        'folio' => 'getFolio',
         'num_consulta' => 'getNumConsulta',
         'personas' => 'getPersonas'
     ];
@@ -77,7 +77,7 @@ class Respuesta implements ModelInterface, ArrayAccess
     
     public function __construct(array $data = null)
     {
-        $this->container['folio_consulta_otorgante'] = isset($data['folio_consulta_otorgante']) ? $data['folio_consulta_otorgante'] : null;
+        $this->container['folio'] = isset($data['folio']) ? $data['folio'] : null;
         $this->container['num_consulta'] = isset($data['num_consulta']) ? $data['num_consulta'] : null;
         $this->container['personas'] = isset($data['personas']) ? $data['personas'] : null;
     }
@@ -93,14 +93,14 @@ class Respuesta implements ModelInterface, ArrayAccess
         return count($this->listInvalidProperties()) === 0;
     }
     
-    public function getFolioConsultaOtorgante()
+    public function getFolio()
     {
-        return $this->container['folio_consulta_otorgante'];
+        return $this->container['folio'];
     }
     
-    public function setFolioConsultaOtorgante($folio_consulta_otorgante)
+    public function setFolio($folio)
     {
-        $this->container['folio_consulta_otorgante'] = $folio_consulta_otorgante;
+        $this->container['folio'] = $folio;
         return $this;
     }
     
