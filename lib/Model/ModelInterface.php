@@ -16,8 +16,8 @@ interface ModelInterface
     public static function setters();
     
     public static function getters();
-    
+
     public function listInvalidProperties();
-    
+
     public function valid();
 }
