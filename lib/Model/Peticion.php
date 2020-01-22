@@ -109,18 +109,7 @@ class Peticion implements ModelInterface, ArrayAccess
     public function listInvalidProperties()
     {
         $invalidProperties = [];
-        if ($this->container['tipo_documento'] === null) {
-            $invalidProperties[] = "'tipo_documento' can't be null";
-        }
-        if ((mb_strlen($this->container['tipo_documento']) > 2)) {
-            $invalidProperties[] = "invalid value for 'tipo_documento', the character length must be smaller than or equal to 2.";
-        }
-        if ($this->container['numero_documento'] === null) {
-            $invalidProperties[] = "'numero_documento' can't be null";
-        }
-        if ((mb_strlen($this->container['numero_documento']) > 12)) {
-            $invalidProperties[] = "invalid value for 'numero_documento', the character length must be smaller than or equal to 12.";
-        }
+  
         if ($this->container['nombre'] === null) {
             $invalidProperties[] = "'nombre' can't be null";
         }

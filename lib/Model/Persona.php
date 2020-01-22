@@ -20,7 +20,8 @@ class Persona implements ModelInterface, ArrayAccess
         'numero_documento' => 'string',
         'ubicacion' => 'string',
         'fecha_inicio' => 'string',
-        'fecha_fin' => 'string'
+        'fecha_fin' => 'string',
+        'resolucion_nombramiento' => 'string'
     ];
     
     protected static $PLDNaturalesFormats = [
@@ -32,7 +33,8 @@ class Persona implements ModelInterface, ArrayAccess
         'numero_documento' => null,
         'ubicacion' => null,
         'fecha_inicio' => null,
-        'fecha_fin' => null
+        'fecha_fin' => null,
+        'resolucion_nombramiento' => null
     ];
     
     public static function PLDNaturalesTypes()
@@ -54,7 +56,8 @@ class Persona implements ModelInterface, ArrayAccess
         'numero_documento' => 'numeroDocumento',
         'ubicacion' => 'ubicacion',
         'fecha_inicio' => 'fechaInicio',
-        'fecha_fin' => 'fechaFin'
+        'fecha_fin' => 'fechaFin',
+        'resolucion_nombramiento' => 'resolucionNombramiento'
     ];
     
     protected static $setters = [
@@ -66,7 +69,8 @@ class Persona implements ModelInterface, ArrayAccess
         'numero_documento' => 'setNumeroDocumento',
         'ubicacion' => 'setUbicacion',
         'fecha_inicio' => 'setFechaInicio',
-        'fecha_fin' => 'setFechaFin'
+        'fecha_fin' => 'setFechaFin',
+        'resolucion_nombramiento' => 'setResolucionNombramiento'
     ];
     
     protected static $getters = [
@@ -78,7 +82,8 @@ class Persona implements ModelInterface, ArrayAccess
         'numero_documento' => 'getNumeroDocumento',
         'ubicacion' => 'getUbicacion',
         'fecha_inicio' => 'getFechaInicio',
-        'fecha_fin' => 'getFechaFin'
+        'fecha_fin' => 'getFechaFin',
+        'resolucion_nombramiento' => 'getResolucionNombramiento'
     ];
     
     public static function attributeMap()
@@ -127,9 +132,20 @@ class Persona implements ModelInterface, ArrayAccess
         $this->container['ubicacion'] = isset($data['ubicacion']) ? $data['ubicacion'] : null;
         $this->container['fecha_inicio'] = isset($data['fecha_inicio']) ? $data['fecha_inicio'] : null;
         $this->container['fecha_fin'] = isset($data['fecha_fin']) ? $data['fecha_fin'] : null;
+        $this->container['resolucion_nombramiento'] = isset($data['resolucion_nombramiento']) ? $data['resolucion_nombramiento'] : null;
     }
     
-  
+    public function listInvalidProperties()
+    {
+        $invalidProperties = [];
+
+        return $invalidProperties;
+    }
+
+    public function valid()
+    {
+        return count($this->listInvalidProperties()) === 0;
+    }
     
     public function getNombreCompleto()
     {
@@ -232,6 +248,17 @@ class Persona implements ModelInterface, ArrayAccess
         return $this;
     }
     
+    public function getResolucionNombramiento()
+    {
+        return $this->container['resolucion_nombramiento'];
+    }
+
+    public function setResolucionNombramiento($resolucion_nombramiento)
+    {
+        $this->container['resolucion_nombramiento'] = $resolucion_nombramiento;
+
+        return $this;
+    }
    
     
     public function offsetExists($offset)
