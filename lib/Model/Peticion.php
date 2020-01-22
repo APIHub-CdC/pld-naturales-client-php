@@ -12,7 +12,7 @@ class Peticion implements ModelInterface, ArrayAccess
     protected static $PLDNaturalesModelName = 'Peticion';
     
     protected static $PLDNaturalesTypes = [
-        'folio_otorgante' => 'string',
+        'folio' => 'string',
         'tipo_documento' => 'string',
         'numero_documento' => 'string',
         'nombre' => 'string',
@@ -22,7 +22,7 @@ class Peticion implements ModelInterface, ArrayAccess
     ];
     
     protected static $PLDNaturalesFormats = [
-        'folio_otorgante' => null,
+        'folio' => null,
         'tipo_documento' => null,
         'numero_documento' => null,
         'nombre' => null,
@@ -42,7 +42,7 @@ class Peticion implements ModelInterface, ArrayAccess
     }
     
     protected static $attributeMap = [
-        'folio_otorgante' => 'folioOtorgante',
+        'folio' => 'folio',
         'tipo_documento' => 'tipoDocumento',
         'numero_documento' => 'numeroDocumento',
         'nombre' => 'nombre',
@@ -52,7 +52,7 @@ class Peticion implements ModelInterface, ArrayAccess
     ];
     
     protected static $setters = [
-        'folio_otorgante' => 'setFolioOtorgante',
+        'folio' => 'setFolio',
         'tipo_documento' => 'setTipoDocumento',
         'numero_documento' => 'setNumeroDocumento',
         'nombre' => 'setNombre',
@@ -62,7 +62,7 @@ class Peticion implements ModelInterface, ArrayAccess
     ];
     
     protected static $getters = [
-        'folio_otorgante' => 'getFolioOtorgante',
+        'folio' => 'getFolio',
         'tipo_documento' => 'getTipoDocumento',
         'numero_documento' => 'getNumeroDocumento',
         'nombre' => 'getNombre',
@@ -97,7 +97,7 @@ class Peticion implements ModelInterface, ArrayAccess
     
     public function __construct(array $data = null)
     {
-        $this->container['folio_otorgante'] = isset($data['folio_otorgante']) ? $data['folio_otorgante'] : null;
+        $this->container['folio'] = isset($data['folio']) ? $data['folio'] : null;
         $this->container['tipo_documento'] = isset($data['tipo_documento']) ? $data['tipo_documento'] : null;
         $this->container['numero_documento'] = isset($data['numero_documento']) ? $data['numero_documento'] : null;
         $this->container['nombre'] = isset($data['nombre']) ? $data['nombre'] : null;
@@ -109,18 +109,7 @@ class Peticion implements ModelInterface, ArrayAccess
     public function listInvalidProperties()
     {
         $invalidProperties = [];
-        if ($this->container['tipo_documento'] === null) {
-            $invalidProperties[] = "'tipo_documento' can't be null";
-        }
-        if ((mb_strlen($this->container['tipo_documento']) > 2)) {
-            $invalidProperties[] = "invalid value for 'tipo_documento', the character length must be smaller than or equal to 2.";
-        }
-        if ($this->container['numero_documento'] === null) {
-            $invalidProperties[] = "'numero_documento' can't be null";
-        }
-        if ((mb_strlen($this->container['numero_documento']) > 12)) {
-            $invalidProperties[] = "invalid value for 'numero_documento', the character length must be smaller than or equal to 12.";
-        }
+  
         if ($this->container['nombre'] === null) {
             $invalidProperties[] = "'nombre' can't be null";
         }
@@ -135,14 +124,14 @@ class Peticion implements ModelInterface, ArrayAccess
         return count($this->listInvalidProperties()) === 0;
     }
     
-    public function getFolioOtorgante()
+    public function getFolio()
     {
-        return $this->container['folio_otorgante'];
+        return $this->container['folio'];
     }
     
-    public function setFolioOtorgante($folio_otorgante)
+    public function setFolio($folio)
     {
-        $this->container['folio_otorgante'] = $folio_otorgante;
+        $this->container['folio'] = $folio;
         return $this;
     }
     
