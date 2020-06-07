@@ -52,25 +52,31 @@ class PLDNaturalesApi
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+                if ($e->getCode() != 404)
+                    throw new ApiException(
+                        "[{$e->getCode()}] {$e->getMessage()}",
+                        $e->getCode(),
+                        $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                        $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                    );
             }
-            $statusCode = $response->getStatusCode();
+            if ($response === null){
+                $response = $e->getResponse();
+            }
+
+            $statusCode = $response->getStatusCode();   
             if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
+                if ($statusCode != 404)
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $request->getUri()
+                        ),
                         $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
             }
             $responseBody = $response->getBody();
             if ($returnType === '\SplFileObject') {
