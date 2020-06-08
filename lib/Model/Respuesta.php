@@ -14,13 +14,15 @@ class Respuesta implements ModelInterface, ArrayAccess
     protected static $PLDNaturalesTypes = [
         'folio' => 'string',
         'num_consulta' => 'float',
-        'personas' => '\PLDNaturales\Client\Model\Persona[]'
+        'personas' => '\PLDNaturales\Client\Model\Persona[]',
+        'errores' => '\PLDNaturales\Client\Model\Error[]'
     ];
     
     protected static $PLDNaturalesFormats = [
         'folio' => null,
         'num_consulta' => null,
-        'personas' => null
+        'personas' => null,
+        'errores' => null
     ];
     
     public static function PLDNaturalesTypes()
@@ -36,19 +38,22 @@ class Respuesta implements ModelInterface, ArrayAccess
     protected static $attributeMap = [
         'folio' => 'folio',
         'num_consulta' => 'numConsulta',
-        'personas' => 'personas'
+        'personas' => 'personas',
+        'errores' => 'errores'
     ];
     
     protected static $setters = [
         'folio' => 'setFolio',
         'num_consulta' => 'setNumConsulta',
-        'personas' => 'setPersonas'
+        'personas' => 'setPersonas',
+        'errores' => 'setErrores'
     ];
     
     protected static $getters = [
         'folio' => 'getFolio',
         'num_consulta' => 'getNumConsulta',
-        'personas' => 'getPersonas'
+        'personas' => 'getPersonas',
+        'errores' => 'getErrores'
     ];
     
     public static function attributeMap()
@@ -80,6 +85,7 @@ class Respuesta implements ModelInterface, ArrayAccess
         $this->container['folio'] = isset($data['folio']) ? $data['folio'] : null;
         $this->container['num_consulta'] = isset($data['num_consulta']) ? $data['num_consulta'] : null;
         $this->container['personas'] = isset($data['personas']) ? $data['personas'] : null;
+        $this->container['errores'] = isset($data['errores']) ? $data['errores'] : null;
     }
     
     public function listInvalidProperties()
@@ -123,6 +129,17 @@ class Respuesta implements ModelInterface, ArrayAccess
     public function setPersonas($personas)
     {
         $this->container['personas'] = $personas;
+        return $this;
+    }
+    
+    public function getErrores()
+    {
+        return $this->container['errores'];
+    }
+    
+    public function setErrores($errores)
+    {
+        $this->container['errores'] = $errores;
         return $this;
     }
     
